@@ -10,10 +10,22 @@ import org.testng.annotations.Test;
 
 import java.util.*;
 
-public class LoginUiTest {
-    WebDriver driver;
+import static org.testng.Assert.*;
 
-    List<String> expectedBenefitTextList = Arrays.asList(
+public class LoginUiTest {
+    private WebDriver driver;
+
+    // 14 Close Browser
+    @AfterClass
+    public void closeBrowser() {
+        driver.close();
+    }
+
+    private List<String> exepectedHeaderSections = Arrays.asList(
+            "HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS"
+    );
+
+    private List<String> expectedBenefitTextList = Arrays.asList(
             "To include good practices\n" +
                     "and ideas from successful\n" +
                     "EPAM project",
@@ -26,94 +38,84 @@ public class LoginUiTest {
                     "wish to get more…"
     );
 
-    //1 Create a new test
     @Test
     public void loginUiTest() {
-        System.setProperty("webdriver.chrome.driver", "D:\\Java\\EkaterinaMoldavskaya\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
 
-        // 2 Open test site by URL
+        // 1 Open test site by URL
         driver.navigate().to("https://epam.github.io/JDI/");
 
-        // 3 Assert Browser title
-        Assert.assertEquals(driver.getTitle(), "Home Page");
+        // 2 Assert Browser title
+        assertEquals(driver.getTitle(), "Home Page");
 
-        // 4 Perform login
+        // 3 Perform login
         WebElement userIcon = driver.findElement(By.cssSelector("#user-icon"));
         userIcon.click();
         driver.findElement(By.cssSelector("#Name")).sendKeys("epam");
         driver.findElement(By.cssSelector("#Password")).sendKeys("1234");
         driver.findElement(By.cssSelector("#login-form [type=submit]")).click();
 
-        // 5 Assert User name in the left-top side of screen that user is loggined
+        // 4 Assert User name in the left-top side of screen that user is loggined
         WebElement userName = driver.findElement(By.cssSelector(".profile-photo span"));
-        Assert.assertTrue(userName.isDisplayed());
-        Assert.assertEquals(userName.getText(), "PITER CHAILOVSKII");
+        assertTrue(userName.isDisplayed());
+        assertEquals(userName.getText(), "PITER CHAILOVSKII");
 
-        // 6 Assert Browser title
-        Assert.assertEquals(driver.getTitle(), "Home Page");
+        // 5 Assert Browser title
+        assertEquals(driver.getTitle(), "Home Page");
 
-        // 7 Assert that there are 4 items on the header section are displayed and they have proper texts
+        // 6 Assert that there are 4 items on the header section are displayed and they have proper texts
         List<WebElement> headerSections = driver.findElements(By.cssSelector(".nav > li > a"));
-        Set<String> sectionNames = new HashSet<String>();
-        for (WebElement headerSection : headerSections) {
-            sectionNames.add(headerSection.getText());
+        for (int i = 0; i < headerSections.size(); i++) {
+            assertEquals(headerSections.get(i).getText(), exepectedHeaderSections.get(i));
         }
-        Assert.assertEquals(sectionNames, new HashSet<String>(Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS")));
 
-        // 8 Assert that there are 4 images on the Index Page and they are displayed
+        // 7 Assert that there are 4 images on the Index Page and they are displayed
         List<WebElement> images = driver.findElements(By.cssSelector(".benefit-icon"));
         for (WebElement image : images) {
-            Assert.assertTrue(image.isDisplayed());
+            assertTrue(image.isDisplayed());
         }
 
-        // 9 Assert that there are 4 texts on the Index Page under icons and they have proper text
+        // 8 Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> textBelowImages = driver.findElements(By.cssSelector(".benefit-txt"));
         List<String> imageTexts = new ArrayList<String>();
         for (WebElement textBelowImage : textBelowImages) {
+            assertTrue(textBelowImage.isDisplayed());
             imageTexts.add(textBelowImage.getText());
-            Assert.assertTrue(textBelowImage.isDisplayed());
         }
-        Assert.assertEquals(imageTexts, expectedBenefitTextList);
+        assertEquals(imageTexts, expectedBenefitTextList);
 
-        // 10 Assert a text of the main header
+        // 9 Assert a text of the main header
         WebElement mainTitle = driver.findElement(By.cssSelector(".main-title"));
-        Assert.assertTrue(mainTitle.isDisplayed());
-        Assert.assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
+        assertTrue(mainTitle.isDisplayed());
+        assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
         WebElement mainText = driver.findElement(By.cssSelector(".main-txt"));
-        Assert.assertTrue(mainText.isDisplayed());
-        Assert.assertEquals(mainText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT," +
+        assertTrue(mainText.isDisplayed());
+        assertEquals(mainText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT," +
                 " SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA." +
                 " UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI" +
                 " UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
                 "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
-        // 11 Assert a text of the sub header
+        // 10 Assert a text of the sub header
         WebElement subHeader = driver.findElement(By.cssSelector("h3 a"));
-        Assert.assertTrue(subHeader.isDisplayed());
-        Assert.assertEquals(subHeader.getText(), "JDI GITHUB");
+        assertTrue(subHeader.isDisplayed());
+        assertEquals(subHeader.getText(), "JDI GITHUB");
 
-        // 12 Assert that JDI GITHUB is a link and has a proper URL
+        // 11 Assert that JDI GITHUB is a link and has a proper URL
         WebElement jdiGithubUrl = driver.findElement(By.linkText("JDI GITHUB"));
-        Assert.assertTrue(jdiGithubUrl.isDisplayed());
-        Assert.assertTrue(jdiGithubUrl.isEnabled());
-        jdiGithubUrl.click();
-        Assert.assertEquals(driver.getCurrentUrl(), "https://github.com/epam/JDI");
-        driver.navigate().back();
+        assertTrue(jdiGithubUrl.isDisplayed());
+        assertTrue(jdiGithubUrl.isEnabled());
+        assertEquals(jdiGithubUrl.getAttribute("href"), "https://github.com/epam/JDI");
 
-        // 13 Assert that there is Left Section
+
+        // 12 Assert that there is Left Section
         WebElement leftSection = driver.findElement(By.cssSelector(".uui-side-bar"));
-        Assert.assertTrue(leftSection.isDisplayed());
+        assertTrue(leftSection.isDisplayed());
 
-        // 14 Assert that there is Footer
+        // 13 Assert that there is Footer
         WebElement footer = driver.findElement(By.cssSelector(".footer-content"));
-        Assert.assertTrue(footer.isDisplayed());
-    }
-
-    // 15 Close Browser
-    @AfterClass
-    public void closeBrowser(){
-        driver.close();
+        assertTrue(footer.isDisplayed());
     }
 }
