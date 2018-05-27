@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Single Login UI Test with TestBase" verbose="1">
+    <test name="Login UI test with TestBase">
+
+
+        <classes>
+            <class name="hw2.ex3.LoginUiTest3"/>
+        </classes>
+
+    </test>
+</suite>
