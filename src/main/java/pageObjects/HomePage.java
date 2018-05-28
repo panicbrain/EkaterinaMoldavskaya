@@ -48,17 +48,40 @@ public class HomePage {
     @FindBy(css = ".profile-photo span")
     private WebElement userName;
 
-    @FindBys ({
-        @FindBy(css = ".nav > li > a")
+    @FindBys({
+            @FindBy(css = ".nav > li > a")
     })
     private List<WebElement> headerSections;
 
     @FindBys ({
+            @FindBy(css = ".benefit-icon")
+    })
+    private List<WebElement> images;
+
+    @FindBys({
             @FindBy(css = ".benefit-txt")
     })
     private List<WebElement> textBelowImages;
 
-    public void open(WebDriver driver){
+    @FindBy(css = ".main-title")
+    private WebElement mainTitle;
+
+    @FindBy(css = ".main-txt")
+    private WebElement mainText;
+
+    @FindBy(css = "h3 a")
+    private WebElement subHeader;
+
+    @FindBy(linkText = "JDI GITHUB")
+    private WebElement jdiGithubUrl;
+
+    @FindBy(css = ".uui-side-bar")
+    private WebElement leftSection;
+
+    @FindBy(css = ".footer-content")
+    private WebElement footer;
+
+    public void open(WebDriver driver) {
         driver.navigate().to("https://epam.github.io/JDI/");
     }
 
@@ -69,22 +92,28 @@ public class HomePage {
         submitButton.click();
     }
 
-    public void checkHomePageTitle(WebDriver driver){
+    public void checkHomePageTitle(WebDriver driver) {
         assertEquals(driver.getTitle(), "Home Page");
     }
 
-    public void checkUserNameText(WebDriver driver){
+    public void checkUserNameText(WebDriver driver) {
         assertTrue(userName.isDisplayed());
         assertEquals(userName.getText(), "PITER CHAILOVSKII");
     }
 
-    public void checkHomePageTitleAfterLogin(WebDriver driver){
+    public void checkHomePageTitleAfterLogin(WebDriver driver) {
         assertEquals(driver.getTitle(), "Home Page");
     }
 
     public void checkHeaderSectionsText(WebDriver driver) {
         for (int i = 0; i < headerSections.size(); i++) {
             assertEquals(headerSections.get(i).getText(), exepectedHeaderSections.get(i));
+        }
+    }
+
+    public void checkImagesAreDisplayed(WebDriver driver) {
+        for (WebElement image : images) {
+            assertTrue(image.isDisplayed());
         }
     }
 
@@ -96,5 +125,38 @@ public class HomePage {
             imageTexts.add(textBelowImage.getText());
         }
         assertEquals(imageTexts, expectedBenefitTextList);
+    }
+
+    public void checkMainTitleText(WebDriver driver){
+        assertTrue(mainTitle.isDisplayed());
+        assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
+    }
+
+    public void checkMainText(WebDriver driver){
+        assertTrue(mainText.isDisplayed());
+        assertEquals(mainText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT," +
+                " SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA." +
+                " UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI" +
+                " UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
+                "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
+    }
+
+    public void checkSubHeaderText(WebDriver driver){
+        assertTrue(subHeader.isDisplayed());
+        assertEquals(subHeader.getText(), "JDI GITHUB");
+    }
+
+    public void checkJdiGithubUrl(WebDriver driver){
+        assertTrue(jdiGithubUrl.isDisplayed());
+        assertTrue(jdiGithubUrl.isEnabled());
+        assertEquals(jdiGithubUrl.getAttribute("href"), "https://github.com/epam/JDI");
+    }
+
+    public void checkLeftSectionIsDisplayed(WebDriver driver){
+        assertTrue(leftSection.isDisplayed());
+    }
+
+    public void checkFooterIsDisplayed(WebDriver driver){
+        assertTrue(footer.isDisplayed());
     }
 }
