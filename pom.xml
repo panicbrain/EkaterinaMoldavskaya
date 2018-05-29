@@ -7,6 +7,13 @@
     <groupId>epam</groupId>
     <artifactId>EkaterinaMoldavskaya</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <suiteXmlFile>LoginUIEx3TestConfig.xml</suiteXmlFile>
+        <suiteXmlFile>regressionLoginUITestsConfig.xml</suiteXmlFile>
+        <suiteXmlFile>smokeTestsConfig.xml</suiteXmlFile>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -17,8 +24,23 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.14.3</version>
-            <scope>test</scope>
         </dependency>
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.21.0</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

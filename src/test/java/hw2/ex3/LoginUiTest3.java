@@ -51,7 +51,7 @@ public class LoginUiTest3 extends TestBase{
             "Already have good base\n" +
                     "(about 20 internal and\n" +
                     "some external projects),\n" +
-                    "wish to get more…"
+                    "wish to get more\u2026"
     );
 
     @Test
@@ -103,7 +103,7 @@ public class LoginUiTest3 extends TestBase{
         // 9 Assert a text of the main header
         WebElement mainTitle = driver.findElement(By.cssSelector(".main-title"));
         assertTrue(mainTitle.isDisplayed());
-        assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
+        assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES\u2026");
         WebElement mainText = driver.findElement(By.cssSelector(".main-txt"));
         assertTrue(mainText.isDisplayed());
         assertEquals(mainText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT," +
