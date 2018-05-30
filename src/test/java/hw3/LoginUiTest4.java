@@ -50,34 +50,38 @@ public class LoginUiTest4 {
         homepage.login("epam","1234");
 
         // 4 Assert User name in the left-top side of screen that user is loggined
-        homepage.checkUserNameText(driver);
+        homepage.checkUserNameText("PITER CHAILOVSKII");
 
         // 5 Assert Browser title
         homepage.checkHomePageTitleAfterLogin(driver);
 
         // 6 Assert that there are 4 items on the header section are displayed and they have proper texts
-        homepage.checkHeaderSectionsText(driver);
+        homepage.checkHeaderSectionsText();
 
         // 7 Assert that there are 4 images on the Index Page and they are displayed
-        homepage.checkImagesAreDisplayed(driver);
+        homepage.checkImagesAreDisplayed();
 
         // 8 Assert that there are 4 texts on the Index Page under icons and they have proper text
         homepage.checkTextBelowImages(driver);
 
         // 9 Assert a text of the main header
-        homepage.checkMainTitleText(driver);
-        homepage.checkMainText(driver);
+        homepage.checkMainTitleText("EPAM FRAMEWORK WISHES…");
+        homepage.checkMainText("LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT," +
+                " SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA." +
+                " UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI" +
+                " UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
+                "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
         // 10 Assert a text of the sub header
-        homepage.checkSubHeaderText(driver);
+        homepage.checkSubHeaderText("JDI GITHUB");
 
         // 11 Assert that JDI GITHUB is a link and has a proper URL
-        homepage.checkJdiGithubUrl(driver);
+        homepage.checkJdiGithubUrl("https://github.com/epam/JDI");
 
         // 12 Assert that there is Left Section
-        homepage.checkLeftSectionIsDisplayed(driver);
+        homepage.checkLeftSectionIsDisplayed();
 
         // 13 Assert that there is Footer
-        homepage.checkFooterIsDisplayed(driver);
+        homepage.checkFooterIsDisplayed();
     }
 }

@@ -96,22 +96,22 @@ public class HomePage {
         assertEquals(driver.getTitle(), "Home Page");
     }
 
-    public void checkUserNameText(WebDriver driver) {
+    public void checkUserNameText(String name) {
         assertTrue(userName.isDisplayed());
-        assertEquals(userName.getText(), "PITER CHAILOVSKII");
+        assertEquals(userName.getText(), name);
     }
 
     public void checkHomePageTitleAfterLogin(WebDriver driver) {
         assertEquals(driver.getTitle(), "Home Page");
     }
 
-    public void checkHeaderSectionsText(WebDriver driver) {
+    public void checkHeaderSectionsText() {
         for (int i = 0; i < headerSections.size(); i++) {
             assertEquals(headerSections.get(i).getText(), exepectedHeaderSections.get(i));
         }
     }
 
-    public void checkImagesAreDisplayed(WebDriver driver) {
+    public void checkImagesAreDisplayed() {
         for (WebElement image : images) {
             assertTrue(image.isDisplayed());
         }
@@ -127,36 +127,32 @@ public class HomePage {
         assertEquals(imageTexts, expectedBenefitTextList);
     }
 
-    public void checkMainTitleText(WebDriver driver){
+    public void checkMainTitleText(String mainTitleText){
         assertTrue(mainTitle.isDisplayed());
-        assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
+        assertEquals(mainTitle.getText(), mainTitleText);
     }
 
-    public void checkMainText(WebDriver driver){
+    public void checkMainText(String checkedMainText){
         assertTrue(mainText.isDisplayed());
-        assertEquals(mainText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT," +
-                " SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA." +
-                " UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI" +
-                " UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
-                "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
+        assertEquals(mainText.getText(), checkedMainText);
     }
 
-    public void checkSubHeaderText(WebDriver driver){
+    public void checkSubHeaderText(String subHeaderText){
         assertTrue(subHeader.isDisplayed());
-        assertEquals(subHeader.getText(), "JDI GITHUB");
+        assertEquals(subHeader.getText(), subHeaderText);
     }
 
-    public void checkJdiGithubUrl(WebDriver driver){
+    public void checkJdiGithubUrl(String jdiUrl){
         assertTrue(jdiGithubUrl.isDisplayed());
         assertTrue(jdiGithubUrl.isEnabled());
-        assertEquals(jdiGithubUrl.getAttribute("href"), "https://github.com/epam/JDI");
+        assertEquals(jdiGithubUrl.getAttribute("href"), jdiUrl);
     }
 
-    public void checkLeftSectionIsDisplayed(WebDriver driver){
+    public void checkLeftSectionIsDisplayed(){
         assertTrue(leftSection.isDisplayed());
     }
 
-    public void checkFooterIsDisplayed(WebDriver driver){
+    public void checkFooterIsDisplayed(){
         assertTrue(footer.isDisplayed());
     }
 }

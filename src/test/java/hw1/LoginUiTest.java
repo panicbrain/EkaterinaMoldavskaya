@@ -15,7 +15,7 @@ import static org.testng.Assert.*;
 public class LoginUiTest {
     private WebDriver driver;
 
-    // 14 Close Browser
+
     @AfterClass
     public void closeBrowser() {
         driver.close();
