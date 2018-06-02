@@ -14,7 +14,6 @@ import static org.testng.Assert.assertEquals;
 
 public class Assert4TextsBelow4Images {
 
-
     @DataProvider(parallel = true)
     public Object[][] expectedBenefitTexts() {
         return new Object[][]{
@@ -34,13 +33,15 @@ public class Assert4TextsBelow4Images {
     @Test(dataProvider = "expectedBenefitTexts", threadPoolSize = 4, invocationCount = 1)
     public void assert4TextsBelow4ImagesTest(int textBelowImageIndex, String benefitText) {
         System.setProperty("webdriver.chrome.driver", "src/chromedriver.exe");
+
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
+
         driver.navigate().to("https://epam.github.io/JDI/");
+
         List<WebElement> textBelowImages = driver.findElements(By.cssSelector(".benefit-txt"));
         assertEquals(textBelowImages.get(textBelowImageIndex).getText(), benefitText);
 
         driver.close();
     }
-
 }

@@ -21,9 +21,7 @@ public class LoginUiTest {
         driver.close();
     }
 
-    private List<String> exepectedHeaderSections = Arrays.asList(
-            "HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS"
-    );
+    private List<String> expectedHeaderSections = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
 
     private List<String> expectedBenefitTextList = Arrays.asList(
             "To include good practices\n" +
@@ -68,7 +66,7 @@ public class LoginUiTest {
         // 6 Assert that there are 4 items on the header section are displayed and they have proper texts
         List<WebElement> headerSections = driver.findElements(By.cssSelector(".nav > li > a"));
         for (int i = 0; i < headerSections.size(); i++) {
-            assertEquals(headerSections.get(i).getText(), exepectedHeaderSections.get(i));
+            assertEquals(headerSections.get(i).getText(), expectedHeaderSections.get(i));
         }
 
         // 7 Assert that there are 4 images on the Index Page and they are displayed

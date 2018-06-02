@@ -14,8 +14,22 @@ import java.util.List;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class LoginUiTest3 extends TestBase{
+public class LoginUiTest3 extends TestBase {
     private WebDriver driver;
+    private List<String> expectedHeaderSections = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
+
+    private List<String> expectedBenefitTextList = Arrays.asList(
+            "To include good practices\n" +
+                    "and ideas from successful\n" +
+                    "EPAM project",
+            "To be flexible and\n" +
+                    "customizable",
+            "To be multiplatform",
+            "Already have good base\n" +
+                    "(about 20 internal and\n" +
+                    "some external projects),\n" +
+                    "wish to get more\u2026"
+    );
 
     @BeforeClass
     public void beforeClass() {
@@ -33,31 +47,12 @@ public class LoginUiTest3 extends TestBase{
     }
 
     @AfterMethod
-    public void afterMethod(){
+    public void afterMethod() {
         System.out.println(driver.getTitle());
     }
 
-    private List<String> exepectedHeaderSections = Arrays.asList(
-            "HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS"
-    );
-
-    private List<String> expectedBenefitTextList = Arrays.asList(
-            "To include good practices\n" +
-                    "and ideas from successful\n" +
-                    "EPAM project",
-            "To be flexible and\n" +
-                    "customizable",
-            "To be multiplatform",
-            "Already have good base\n" +
-                    "(about 20 internal and\n" +
-                    "some external projects),\n" +
-                    "wish to get more\u2026"
-    );
-
     @Test
     public void loginUiTest() {
-
-
         // 1 Open test site by URL
         driver.navigate().to("https://epam.github.io/JDI/");
 
@@ -82,7 +77,7 @@ public class LoginUiTest3 extends TestBase{
         // 6 Assert that there are 4 items on the header section are displayed and they have proper texts
         List<WebElement> headerSections = driver.findElements(By.cssSelector(".nav > li > a"));
         for (int i = 0; i < headerSections.size(); i++) {
-            assertEquals(headerSections.get(i).getText(), exepectedHeaderSections.get(i));
+            assertEquals(headerSections.get(i).getText(), expectedHeaderSections.get(i));
         }
 
         // 7 Assert that there are 4 images on the Index Page and they are displayed
@@ -122,7 +117,6 @@ public class LoginUiTest3 extends TestBase{
         assertTrue(jdiGithubUrl.isDisplayed());
         assertTrue(jdiGithubUrl.isEnabled());
         assertEquals(jdiGithubUrl.getAttribute("href"), "https://github.com/epam/JDI");
-
 
         // 12 Assert that there is Left Section
         WebElement leftSection = driver.findElement(By.cssSelector(".uui-side-bar"));

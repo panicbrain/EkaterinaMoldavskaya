@@ -15,9 +15,7 @@ import static org.testng.Assert.assertTrue;
 
 public class HomePage {
 
-    private List<String> exepectedHeaderSections = Arrays.asList(
-            "HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS"
-    );
+    private List<String> expectedHeaderSections = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
 
     private List<String> expectedBenefitTextList = Arrays.asList(
             "To include good practices\n" +
@@ -31,7 +29,6 @@ public class HomePage {
                     "some external projects),\n" +
                     "wish to get more…"
     );
-
 
     @FindBy(css = "#user-icon")
     private WebElement userIcon;
@@ -48,19 +45,13 @@ public class HomePage {
     @FindBy(css = ".profile-photo span")
     private WebElement userName;
 
-    @FindBys({
-            @FindBy(css = ".nav > li > a")
-    })
+    @FindBy(css = ".nav > li > a")
     private List<WebElement> headerSections;
 
-    @FindBys ({
-            @FindBy(css = ".benefit-icon")
-    })
+    @FindBy(css = ".benefit-icon")
     private List<WebElement> images;
 
-    @FindBys({
-            @FindBy(css = ".benefit-txt")
-    })
+    @FindBy(css = ".benefit-txt")
     private List<WebElement> textBelowImages;
 
     @FindBy(css = ".main-title")
@@ -96,9 +87,9 @@ public class HomePage {
         assertEquals(driver.getTitle(), "Home Page");
     }
 
-    public void checkUserNameText(String name) {
+    public void checkUserNameText() {
         assertTrue(userName.isDisplayed());
-        assertEquals(userName.getText(), name);
+        assertEquals(userName.getText(), "PITER CHAILOVSKII");
     }
 
     public void checkHomePageTitleAfterLogin(WebDriver driver) {
@@ -107,7 +98,7 @@ public class HomePage {
 
     public void checkHeaderSectionsText() {
         for (int i = 0; i < headerSections.size(); i++) {
-            assertEquals(headerSections.get(i).getText(), exepectedHeaderSections.get(i));
+            assertEquals(headerSections.get(i).getText(), expectedHeaderSections.get(i));
         }
     }
 
@@ -118,7 +109,6 @@ public class HomePage {
     }
 
     public void checkTextBelowImages(WebDriver driver) {
-        List<WebElement> textBelowImages = driver.findElements(By.cssSelector(".benefit-txt"));
         List<String> imageTexts = new ArrayList<String>();
         for (WebElement textBelowImage : textBelowImages) {
             assertTrue(textBelowImage.isDisplayed());
@@ -127,32 +117,36 @@ public class HomePage {
         assertEquals(imageTexts, expectedBenefitTextList);
     }
 
-    public void checkMainTitleText(String mainTitleText){
+    public void checkMainTitleText() {
         assertTrue(mainTitle.isDisplayed());
-        assertEquals(mainTitle.getText(), mainTitleText);
+        assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
     }
 
-    public void checkMainText(String checkedMainText){
+    public void checkMainText() {
         assertTrue(mainText.isDisplayed());
-        assertEquals(mainText.getText(), checkedMainText);
+        assertEquals(mainText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT," +
+                " SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA." +
+                " UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI" +
+                " UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
+                "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
     }
 
-    public void checkSubHeaderText(String subHeaderText){
+    public void checkSubHeaderText() {
         assertTrue(subHeader.isDisplayed());
-        assertEquals(subHeader.getText(), subHeaderText);
+        assertEquals(subHeader.getText(), "JDI GITHUB");
     }
 
-    public void checkJdiGithubUrl(String jdiUrl){
+    public void checkJdiGithubUrl() {
         assertTrue(jdiGithubUrl.isDisplayed());
         assertTrue(jdiGithubUrl.isEnabled());
-        assertEquals(jdiGithubUrl.getAttribute("href"), jdiUrl);
+        assertEquals(jdiGithubUrl.getAttribute("href"), "https://github.com/epam/JDI");
     }
 
-    public void checkLeftSectionIsDisplayed(){
+    public void checkLeftSectionIsDisplayed() {
         assertTrue(leftSection.isDisplayed());
     }
 
-    public void checkFooterIsDisplayed(){
+    public void checkFooterIsDisplayed() {
         assertTrue(footer.isDisplayed());
     }
 }

@@ -22,12 +22,13 @@ public class LoginUiTest4 {
     private HomePage homepage;
 
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         System.setProperty("webdriver.chrome.driver", "src/chromedriver.exe");
+
         driver = new ChromeDriver();
-        homepage = PageFactory.initElements(driver,HomePage.class);
         driver.manage().window().maximize();
 
+        homepage = PageFactory.initElements(driver, HomePage.class);
     }
 
 
@@ -47,10 +48,10 @@ public class LoginUiTest4 {
         homepage.checkHomePageTitle(driver);
 
         // 3 Perform login
-        homepage.login("epam","1234");
+        homepage.login("epam", "1234");
 
         // 4 Assert User name in the left-top side of screen that user is loggined
-        homepage.checkUserNameText("PITER CHAILOVSKII");
+        homepage.checkUserNameText();
 
         // 5 Assert Browser title
         homepage.checkHomePageTitleAfterLogin(driver);
@@ -65,18 +66,14 @@ public class LoginUiTest4 {
         homepage.checkTextBelowImages(driver);
 
         // 9 Assert a text of the main header
-        homepage.checkMainTitleText("EPAM FRAMEWORK WISHES…");
-        homepage.checkMainText("LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT," +
-                " SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA." +
-                " UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI" +
-                " UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
-                "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
+        homepage.checkMainTitleText();
+        homepage.checkMainText();
 
         // 10 Assert a text of the sub header
-        homepage.checkSubHeaderText("JDI GITHUB");
+        homepage.checkSubHeaderText();
 
         // 11 Assert that JDI GITHUB is a link and has a proper URL
-        homepage.checkJdiGithubUrl("https://github.com/epam/JDI");
+        homepage.checkJdiGithubUrl();
 
         // 12 Assert that there is Left Section
         homepage.checkLeftSectionIsDisplayed();

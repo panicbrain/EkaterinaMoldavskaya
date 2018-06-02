@@ -17,16 +17,7 @@ import static org.testng.Assert.assertTrue;
 
 public class MixedLoginUITests {
     private WebDriver driver;
-
-
-    @AfterMethod(alwaysRun = true)
-    public void closeBrowser() {
-        driver.close();
-    }
-
-    private List<String> exepectedHeaderSections = Arrays.asList(
-            "HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS"
-    );
+    private List<String> expectedHeaderSections = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
 
     private List<String> expectedBenefitTextList = Arrays.asList(
             "To include good practices\n" +
@@ -40,6 +31,11 @@ public class MixedLoginUITests {
                     "some external projects),\n" +
                     "wish to get more\u2026"
     );
+
+    @AfterMethod(alwaysRun = true)
+    public void closeBrowser() {
+        driver.close();
+    }
 
     @Test(groups = {"Regression"})
     public void loginUiTest7() {
@@ -71,7 +67,7 @@ public class MixedLoginUITests {
         // 6 Assert that there are 4 items on the header section are displayed and they have proper texts
         List<WebElement> headerSections = driver.findElements(By.cssSelector(".nav > li > a"));
         for (int i = 0; i < headerSections.size(); i++) {
-            assertEquals(headerSections.get(i).getText(), exepectedHeaderSections.get(i));
+            assertEquals(headerSections.get(i).getText(), expectedHeaderSections.get(i));
         }
 
         // 7 Assert that there are 4 images on the Index Page and they are displayed
@@ -111,7 +107,6 @@ public class MixedLoginUITests {
         assertTrue(jdiGithubUrl.isDisplayed());
         assertTrue(jdiGithubUrl.isEnabled());
         assertEquals(jdiGithubUrl.getAttribute("href"), "https://github.com/epam/JDI");
-
 
         // 12 Assert that there is Left Section
         WebElement leftSection = driver.findElement(By.cssSelector(".uui-side-bar"));
@@ -152,7 +147,7 @@ public class MixedLoginUITests {
         // 6 Assert that there are 4 items on the header section are displayed and they have proper texts
         List<WebElement> headerSections = driver.findElements(By.cssSelector(".nav > li > a"));
         for (int i = 0; i < headerSections.size(); i++) {
-            assertEquals(headerSections.get(i).getText(), exepectedHeaderSections.get(i));
+            assertEquals(headerSections.get(i).getText(), expectedHeaderSections.get(i));
         }
 
         // 7 Assert that there are 4 images on the Index Page and they are displayed
@@ -192,7 +187,6 @@ public class MixedLoginUITests {
         assertTrue(jdiGithubUrl.isDisplayed());
         assertTrue(jdiGithubUrl.isEnabled());
         assertEquals(jdiGithubUrl.getAttribute("href"), "https://github.com/epam/JDI");
-
 
         // 12 Assert that there is Left Section
         WebElement leftSection = driver.findElement(By.cssSelector(".uui-side-bar"));
@@ -233,7 +227,7 @@ public class MixedLoginUITests {
         // 6 Assert that there are 4 items on the header section are displayed and they have proper texts
         List<WebElement> headerSections = driver.findElements(By.cssSelector(".nav > li > a"));
         for (int i = 0; i < headerSections.size(); i++) {
-            assertEquals(headerSections.get(i).getText(), exepectedHeaderSections.get(i));
+            assertEquals(headerSections.get(i).getText(), expectedHeaderSections.get(i));
         }
 
         // 7 Assert that there are 4 images on the Index Page and they are displayed
@@ -273,7 +267,6 @@ public class MixedLoginUITests {
         assertTrue(jdiGithubUrl.isDisplayed());
         assertTrue(jdiGithubUrl.isEnabled());
         assertEquals(jdiGithubUrl.getAttribute("href"), "https://github.com/epam/JDI");
-
 
         // 12 Assert that there is Left Section
         WebElement leftSection = driver.findElement(By.cssSelector(".uui-side-bar"));
