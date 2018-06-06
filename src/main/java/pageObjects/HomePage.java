@@ -97,18 +97,21 @@ public class HomePage {
     }
 
     public void checkHeaderSectionsText() {
+        assertEquals(headerSections.size(), 4);
         for (int i = 0; i < headerSections.size(); i++) {
             assertEquals(headerSections.get(i).getText(), expectedHeaderSections.get(i));
         }
     }
 
     public void checkImagesAreDisplayed() {
+        assertEquals(images.size(), 4);
         for (WebElement image : images) {
             assertTrue(image.isDisplayed());
         }
     }
 
     public void checkTextBelowImages(WebDriver driver) {
+        assertEquals(textBelowImages.size(), 4);
         List<String> imageTexts = new ArrayList<String>();
         for (WebElement textBelowImage : textBelowImages) {
             assertTrue(textBelowImage.isDisplayed());
