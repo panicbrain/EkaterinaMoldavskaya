@@ -7,7 +7,9 @@ import enums.ServiceSubsections;
 import enums.Users;
 import org.openqa.selenium.support.FindBy;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,13 +36,13 @@ public abstract class EpamJDIPageSelenide {
     @FindBy(css = ".nav .dropdown-toggle")
     private SelenideElement serviceHeaderToggle;
 
-    @FindBy (css = ".nav .dropdown-menu a")
+    @FindBy(css = ".nav .dropdown-menu a")
     private ElementsCollection serviceHeaderSubcategories;
 
-    @FindBy (css = ".sidebar-menu")
+    @FindBy(css = ".sidebar-menu")
     private SelenideElement leftSection;
 
-    @FindBy (css = ".sub a")
+    @FindBy(css = ".sub a")
     private ElementsCollection serviceLeftPanelSubcategories;
 
     public void login(Users user) {
@@ -57,7 +59,7 @@ public abstract class EpamJDIPageSelenide {
 
     public void checkServiceHeaderSubcategories() {
         serviceHeaderToggle.click();
-        for (int i = 0 ; i < serviceHeaderSubcategories.size() ; i++) {
+        for (int i = 0; i < serviceHeaderSubcategories.size(); i++) {
             serviceHeaderSubcategories.get(i).should(Condition.appear);
             serviceHeaderSubcategories.get(i).shouldHave(Condition.text(ServiceSubsections.values()[i].getText()));
         }
@@ -66,7 +68,7 @@ public abstract class EpamJDIPageSelenide {
     }
 
     public void checkServiceLeftPanelSubcategories() {
-        for (int i = 0 ; i < serviceLeftPanelSubcategories.size() ; i++) {
+        for (int i = 0; i < serviceLeftPanelSubcategories.size(); i++) {
             serviceLeftPanelSubcategories.get(i).shouldBe(Condition.visible);
             serviceLeftPanelSubcategories.get(i).shouldHave(Condition.text(ServiceSubsections.values()[i].getText()));
         }
@@ -79,5 +81,9 @@ public abstract class EpamJDIPageSelenide {
 
     public void checkLeftSectionIsDisplayed() {
         leftSection.shouldBe(Condition.visible);
+    }
+
+    String formatDate(Date date) {
+        return new SimpleDateFormat("HH:mm:ss").format(date);
     }
 }

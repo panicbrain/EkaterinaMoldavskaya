@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DifferentElementsPageSelenide extends EpamJDIPageSelenide{
+public class DifferentElementsPageSelenide extends EpamJDIPageSelenide {
     @FindBy(css = ".label-checkbox")
     private ElementsCollection checkboxes;
     @FindBy(css = ".label-radio")
@@ -32,14 +32,14 @@ public class DifferentElementsPageSelenide extends EpamJDIPageSelenide{
 
     public void checkCheckBoxesAreDisplayed() {
         checkboxes.shouldBe(CollectionCondition.size(4));
-        for(SelenideElement checkbox : checkboxes) {
+        for (SelenideElement checkbox : checkboxes) {
             checkbox.shouldBe(Condition.visible);
         }
     }
 
     public void checkRadioButtonsAreDisplayed() {
         radioButtons.shouldBe(CollectionCondition.size(4));
-        for(SelenideElement radioButton : radioButtons) {
+        for (SelenideElement radioButton : radioButtons) {
             radioButton.shouldBe(Condition.visible);
         }
     }
@@ -81,7 +81,7 @@ public class DifferentElementsPageSelenide extends EpamJDIPageSelenide{
     }
 
     public void checkEventFired(DifferentElementsPageCheckboxes checkbox, Date eventTime, boolean isChecked) {
-        String expectedEvent = formatDate(eventTime) + " "+ checkbox.getText() + ": condition changed to " + isChecked;
+        String expectedEvent = formatDate(eventTime) + " " + checkbox.getText() + ": condition changed to " + isChecked;
         checkEventFired(expectedEvent);
     }
 
@@ -97,9 +97,5 @@ public class DifferentElementsPageSelenide extends EpamJDIPageSelenide{
 
     private void checkEventFired(String expectedEvent) {
         eventLogRecords.filterBy(Condition.text(expectedEvent)).shouldHave(CollectionCondition.size(1));
-    }
-
-    private String formatDate(Date date) {
-        return new SimpleDateFormat("HH:mm:ss").format(date);
     }
 }
