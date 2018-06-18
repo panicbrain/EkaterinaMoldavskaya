@@ -52,8 +52,7 @@ public class DifferentElementsPageTest extends TestBase {
         // 4 Assert User name in the left-top side of screen that user is loggined
         homePage.checkUserName();
 
-        // 5 Check interface on Home page, it contains all needed elements:
-        // 4 - pictures, 4 texts under them, 2 text above
+        // 5 Check interface on Home page, it contains all needed elements: 4 pictures, 4 texts under them, 2 text above
         homePage.checkImagesAreDisplayed();
         homePage.checkTextBelowImages();
         homePage.checkMainTitleText();
