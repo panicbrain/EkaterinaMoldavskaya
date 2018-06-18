@@ -2,14 +2,10 @@ package pageObjects;
 
 import com.codeborne.selenide.*;
 import org.openqa.selenium.support.FindBy;
-;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.open;
-import static enums.Users.PITER_CHAILOVSKII;
 import static org.testng.Assert.assertEquals;
 
 public class HomePageSelenide extends EpamJDIPageSelenide {

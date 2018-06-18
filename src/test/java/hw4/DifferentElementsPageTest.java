@@ -3,7 +3,6 @@ package hw4;
 import Base.TestBase;
 import com.codeborne.selenide.WebDriverRunner;
 import enums.DifferentElementsPageCheckboxes;
-import enums.DifferentElementsPageRadioButtons;
 import enums.ServiceSubsections;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -30,7 +29,6 @@ public class DifferentElementsPageTest extends TestBase {
     public void beforeClass() {
         homePage = page(HomePageSelenide.class);
         differentElementsPage = page(DifferentElementsPageSelenide.class);
-
     }
 
     @AfterMethod
@@ -84,9 +82,7 @@ public class DifferentElementsPageTest extends TestBase {
                 differentElementsPage.selectCheckBoxesAndGetEventsDates(WATER, WIND);
 
         // 13 Assert that for each checkbox there is an individual log row and value is corresponded to the status.
-        for (DifferentElementsPageCheckboxes checkbox : checkBoxToDateMap.keySet()) {
-            differentElementsPage.checkEventFired(checkbox, checkBoxToDateMap.get(checkbox), true);
-        }
+        differentElementsPage.checkEventFired(checkBoxToDateMap, true);
 
         // 14 Select radio selen
         Date selenEventDate = differentElementsPage.selectRadioButtonAndGetEventsDate(SELEN);
@@ -105,8 +101,6 @@ public class DifferentElementsPageTest extends TestBase {
                 differentElementsPage.selectCheckBoxesAndGetEventsDates(WATER, WIND);
 
         // 19 Assert that for each checkbox there is an individual log row and value is corresponded to
-        for (DifferentElementsPageCheckboxes checkbox : checkBoxToDateMapUncheck.keySet()) {
-            differentElementsPage.checkEventFired(checkbox, checkBoxToDateMapUncheck.get(checkbox), false);
-        }
+        differentElementsPage.checkEventFired(checkBoxToDateMapUncheck, false);
     }
 }

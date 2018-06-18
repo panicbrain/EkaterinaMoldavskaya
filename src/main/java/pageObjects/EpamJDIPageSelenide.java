@@ -8,15 +8,11 @@ import enums.Users;
 import org.openqa.selenium.support.FindBy;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static enums.Users.PITER_CHAILOVSKII;
 
 public abstract class EpamJDIPageSelenide {
-    private List<String> expectedHeaderSections = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
 
     @FindBy(css = ".profile-photo")
     private SelenideElement userIcon;

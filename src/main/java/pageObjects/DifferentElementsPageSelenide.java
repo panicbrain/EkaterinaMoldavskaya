@@ -9,7 +9,6 @@ import enums.DifferentElementsPageDropDownOptions;
 import enums.DifferentElementsPageRadioButtons;
 import org.openqa.selenium.support.FindBy;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,7 +64,6 @@ public class DifferentElementsPageSelenide extends EpamJDIPageSelenide {
         for (DifferentElementsPageCheckboxes checkboxName : checkboxNames) {
             checkboxes.findBy(Condition.text(checkboxName.getText())).shouldBe(Condition.enabled).click();
             checkboxToDateMap.put(checkboxName, new Date());
-
         }
         return checkboxToDateMap;
     }
@@ -80,9 +78,12 @@ public class DifferentElementsPageSelenide extends EpamJDIPageSelenide {
         return new Date();
     }
 
-    public void checkEventFired(DifferentElementsPageCheckboxes checkbox, Date eventTime, boolean isChecked) {
-        String expectedEvent = formatDate(eventTime) + " " + checkbox.getText() + ": condition changed to " + isChecked;
-        checkEventFired(expectedEvent);
+    public void checkEventFired(Map<DifferentElementsPageCheckboxes, Date> checkboxesDateMap, boolean isChecked) {
+        for (DifferentElementsPageCheckboxes checkbox : checkboxesDateMap.keySet()) {
+            String expectedEvent = formatDate(checkboxesDateMap.get(checkbox)) + " " + checkbox.getText()
+                    + ": condition changed to " + isChecked;
+            checkEventFired(expectedEvent);
+        }
     }
 
     public void checkEventFired(DifferentElementsPageRadioButtons radioButton, Date eventTime) {
